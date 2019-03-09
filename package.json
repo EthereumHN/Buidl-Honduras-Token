@@ -9,7 +9,10 @@
   "dependencies": {
     "openzeppelin-solidity": "^2.1.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^6.2.0",
+    "truffle-hdwallet-provider": "^1.0.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

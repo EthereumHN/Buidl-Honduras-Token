@@ -1,0 +1,33 @@
+Honduras Community Token
+======================
+> Network name:    'xdai'
+> Network id:      100
+> Block gas limit: 10000000
+
+
+2_deploy_contracts.js
+=====================
+
+   Deploying 'HondurasCommunityToken'
+   ----------------------------------
+   > transaction hash:    0xa07589df90a54c1b15d57965fc598328e27fce634b5dbf6cd5c0effa477861a1
+   > Blocks: 0            Seconds: 4
+   > contract address:    0x902C68ED3bde2e270a747A507BF59329ba33fbfC
+   > account:             0xfF9Fe9664e7e0A289A3c64c9e057bCa27Be6685A
+   > balance:             0.458345878
+   > gas used:            2066359
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.04132718 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.04132718 ETH
+
+
+Summary
+=======
+> Total deployments:   1
+> Final cost:          0.04132718 ETH
