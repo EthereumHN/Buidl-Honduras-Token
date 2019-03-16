@@ -1,0 +1,125 @@
+{
+  "contractName": "SwagNFT",
+  "abi": [],
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a72305820294c2151e2f24c25af486b1fd43ed6c23a51a3b931d1e6a0cb91505447f845e60029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a72305820294c2151e2f24c25af486b1fd43ed6c23a51a3b931d1e6a0cb91505447f845e60029",
+  "sourceMap": "108:24:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;108:24:2;;;;;;;",
+  "deployedSourceMap": "108:24:2:-;;;;;",
+  "source": "pragma solidity ^0.5.0;\n\nimport '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol';\n\ncontract SwagNFT  {\n  \n}\n",
+  "sourcePath": "/Users/crisgarner/Projects/community/community-token/contracts/SwagNFT.sol",
+  "ast": {
+    "absolutePath": "/Users/crisgarner/Projects/community/community-token/contracts/SwagNFT.sol",
+    "exportedSymbols": {
+      "SwagNFT": [
+        96
+      ]
+    },
+    "id": 97,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 94,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "absolutePath": "/Users/crisgarner/Projects/community/community-token/node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol",
+        "file": "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol",
+        "id": 95,
+        "nodeType": "ImportDirective",
+        "scope": 97,
+        "sourceUnit": 1660,
+        "src": "25:81:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 96,
+        "linearizedBaseContracts": [
+          96
+        ],
+        "name": "SwagNFT",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 97,
+        "src": "108:24:2"
+      }
+    ],
+    "src": "0:133:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/crisgarner/Projects/community/community-token/contracts/SwagNFT.sol",
+    "exportedSymbols": {
+      "SwagNFT": [
+        96
+      ]
+    },
+    "id": 97,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 94,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "absolutePath": "/Users/crisgarner/Projects/community/community-token/node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol",
+        "file": "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol",
+        "id": 95,
+        "nodeType": "ImportDirective",
+        "scope": 97,
+        "sourceUnit": 1660,
+        "src": "25:81:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 96,
+        "linearizedBaseContracts": [
+          96
+        ],
+        "name": "SwagNFT",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 97,
+        "src": "108:24:2"
+      }
+    ],
+    "src": "0:133:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.2",
+  "updatedAt": "2019-03-15T17:17:27.098Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
