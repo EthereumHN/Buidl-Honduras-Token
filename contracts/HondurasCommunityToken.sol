@@ -4,9 +4,11 @@ import '../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol';
 import '../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol';
 import '../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol';
 import '../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20Burnable.sol';
+import './SwagStore.sol';
 
 contract HondurasCommunityToken is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable {
-  constructor(
+
+    constructor(
         string memory name,
         string memory symbol,
         uint8 decimals
@@ -17,4 +19,17 @@ contract HondurasCommunityToken is ERC20, ERC20Detailed, ERC20Mintable, ERC20Bur
         ERC20()
         public
     {}
+
+    //Receives money and buys swag nft
+    function transferAndCall(
+        address _recipient,
+        uint256 _value,
+        string memory _tokenId
+    ) public {
+            transfer(_recipient, _value);
+            require(SwagStore(_recipient).tokenFallback(msg.sender,
+                                                        _value,
+                                                        _tokenId));
+    }
+
 }
