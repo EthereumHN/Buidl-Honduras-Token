@@ -22,7 +22,7 @@ import {
   OutlineButton
 } from "rimble-ui";
 
-class Admin extends Component {
+class MintTokenForm extends Component {
   constructor(props) {
     super(props);
     const { drizzle, drizzleState } = this.props;
@@ -126,10 +126,10 @@ class Admin extends Component {
           <ModalFooter>
             <Button onClick={this.toggle}>Close</Button>
           </ModalFooter>
-        </Modal>
-        <Container className="mt-4">
-          <Row className="justify-content-center mt-4">
-            <Col lg="6 mt-4">
+        </Modal>{" "}
+        <Container className="mt-0 mb-4">
+          <Row className="justify-content-center">
+            <Col lg="6">
               <Heading.h2>Mint Tokens</Heading.h2>
               <Card className="mt-4 mx-auto">
                 <Form className="form" onSubmit={this.onSubmitForm}>
@@ -165,4 +165,4 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+export default MintTokenForm;

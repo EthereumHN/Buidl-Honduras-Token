@@ -8,9 +8,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import HondurascommunityToken from "./contracts/HondurasCommunityToken.json";
+import SwagNFT from "./contracts/SwagNFT.json";
+import SwagStore from "./contracts/SwagStore.json";
 
 const options = {
-  contracts: [HondurascommunityToken]
+  contracts: [HondurascommunityToken, SwagNFT, SwagStore]
 };
 
 const drizzleStore = generateStore(options);

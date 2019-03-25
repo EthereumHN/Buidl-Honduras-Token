@@ -21,10 +21,10 @@ class Header extends Component {
   }
 
   async checkOwner(drizzle) {
-    const minter = await drizzle.contracts.HondurasCommunityToken.methods
+    const isMinter = await drizzle.contracts.HondurasCommunityToken.methods
       .isMinter(this.state.account)
       .call();
-    var isMinter = minter == this.state.account ? true : false;
+    console.log(isMinter);
     this.setState({ isMinter });
   }
 
@@ -43,8 +43,8 @@ class Header extends Component {
         <NavItem className="ml-2 mr-4 mt-4 pt-1 text-left ">
           <Link href="/">
             <span>
-              <Icon name="Home" size="20" className="mr-1" />
-              Home
+              <Icon name="Redeem" size="20" className="mr-1" />
+              Swag
             </span>
           </Link>
         </NavItem>
@@ -55,7 +55,7 @@ class Header extends Component {
           </Link>
         </NavItem>
 
-        {this.state.isOwner && (
+        {this.state.isMinter && (
           <NavItem className="ml-2 mr-4 mt-4 pt-1 text-left ">
             <Link href="/admin">
               <Icon name="Settings" size="20" className="mr-1" />

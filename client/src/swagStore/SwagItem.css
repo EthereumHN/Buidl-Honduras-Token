@@ -1,0 +1,19 @@
+img.tokenImage{
+    background-color:white;
+    max-height: 300px;
+    width: auto;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right:auto; 
+}
+
+.card-container{
+    min-height: 500px;
+}
+
+button{
+    border-radius: 0!important;
+}
+
+.bottom{    position: absolute;
+    bottom:   0;}

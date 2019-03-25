@@ -1,13 +1,16 @@
 import React, { Component } from "react";
-import { Nav, NavItem } from "reactstrap";
-import { Link, Icon } from "rimble-ui";
+import { Container, Col, Row } from "reactstrap";
+import { Heading } from "rimble-ui";
+import SwagItem from "./SwagItem";
 
 class SwagList extends Component {
   constructor(props) {
     super(props);
-    const { drizzle, drizzleState } = this.props;
+    const { drizzleState } = this.props;
     this.state = {
-      account: drizzleState.accounts[0]
+      account: drizzleState.accounts[0],
+      tokens: null,
+      status: "initialized"
     };
   }
 
@@ -17,45 +20,43 @@ class SwagList extends Component {
   }
 
   async getSwag(drizzle) {
-    const swagList = await drizzle.contracts.SwagNFT.methods.getSwag().call();
+    const swagList = await drizzle.contracts.SwagNFT.methods
+      .tokensOfOwner(drizzle.contracts.SwagStore.address)
+      .call();
+    this.setState({ tokens: swagList, status: "complete" });
     //Save list in state
   }
 
   render() {
+    if (this.state.tokens == null) {
+      switch (this.state.status) {
+        case "complete":
+          return <p>Empty...</p>;
+        default:
+          return <p>Loading...</p>;
+      }
+    }
+    let tokens = this.state.tokens;
     return (
-      <Nav className="mt-4 justify-content-end">
-        <NavItem className="ml-2 mr-4 mt-4 pt-1 text-left ">
-          <Link href="/">
-            <span>
-              <Icon name="Home" size="20" className="mr-1" />
-              Home
-            </span>
-          </Link>
-        </NavItem>
-        <NavItem className="ml-2 mr-4 mt-4 pt-1 text-left ">
-          <Link href="#">
-            <Icon name="AccountBalanceWallet" size="20" className="mr-1" />
-            Balance: {this.state.balance} HCT
-          </Link>
-        </NavItem>
-
-        {this.state.isOwner && (
-          <NavItem className="ml-2 mr-4 mt-4 pt-1 text-left ">
-            <Link href="/admin">
-              <Icon name="Settings" size="20" className="mr-1" />
-              Admin Settings
-            </Link>
-          </NavItem>
-        )}
-        <NavItem className="ml-2 mt-1 text-right ">
-          <b>Current Account:</b> <br />
-          <label>{this.state.account}</label>
-        </NavItem>
-
-        <NavItem className="ml-2 mr-4">
-          <Blockies seed={this.state.account} size={10} scale={5} />
-        </NavItem>
-      </Nav>
+      <>
+        <Container className="mt-4">
+          <Row className="justify-content-center">
+            <Col lg="12">
+              <Heading.h2>All Items</Heading.h2>
+              <Row className="justify-content-center mt-0">
+                {tokens.map(token => (
+                  <SwagItem
+                    key={token}
+                    tokenId={token}
+                    drizzle={this.props.drizzle}
+                    account={this.state.account}
+                  />
+                ))}
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      </>
     );
   }
 }

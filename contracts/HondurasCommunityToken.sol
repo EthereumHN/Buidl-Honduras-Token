@@ -24,12 +24,12 @@ contract HondurasCommunityToken is ERC20, ERC20Detailed, ERC20Mintable, ERC20Bur
     function transferAndCall(
         address _recipient,
         uint256 _value,
-        string memory _tokenId
+        uint256 _tokenId
     ) public {
             transfer(_recipient, _value);
             require(SwagStore(_recipient).tokenFallback(msg.sender,
                                                         _value,
-                                                        _tokenId));
+                                                        _tokenId), "NFT Transfer must be sucessful");
     }
 
 }

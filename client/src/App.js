@@ -4,7 +4,8 @@ import "./App.css";
 import { ThemeProvider } from "rimble-ui";
 import { Route } from "react-router-dom";
 import { withRouter } from "react-router";
-import Admin from "./Admin";
+import Admin from "./admin/Admin";
+import SwagList from "./swagStore/SwagList";
 
 class App extends Component {
   state = { loading: true, drizzleState: null };
@@ -38,9 +39,19 @@ class App extends Component {
         />
         <Route
           exact
-          path="/"
+          path="/admin"
           render={() => (
             <Admin
+              drizzle={this.props.drizzle}
+              drizzleState={this.state.drizzleState}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <SwagList
               drizzle={this.props.drizzle}
               drizzleState={this.state.drizzleState}
             />
