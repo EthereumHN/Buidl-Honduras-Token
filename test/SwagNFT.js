@@ -5,9 +5,7 @@ require("chai").use(require("chai-bignumber")(BN));
 
 const SwagNFT = artifacts.require("./SwagNFT.sol");
 const SwagStore = artifacts.require("./SwagStore.sol");
-const HondurasCommunityToken = artifacts.require(
-  "./HondurasCommunityToken.sol"
-);
+const BuidlHondurasToken = artifacts.require("./BuidlHondurasToken.sol");
 
 contract("SwagNFT", accounts => {
   it("...should set the NFT Token Address.", async () => {
@@ -64,19 +62,19 @@ contract("SwagNFT", accounts => {
   });
 
   it("...should create HCTs.", async () => {
-    const HCTInstance = await HondurasCommunityToken.deployed();
+    const BHTInstance = await BuidlHondurasToken.deployed();
 
-    await HCTInstance.mint(accounts[1], 100, { from: accounts[0] });
+    await BHTInstance.mint(accounts[1], 100, { from: accounts[0] });
 
     // Get stored value
-    const balance = await HCTInstance.balanceOf(accounts[1]);
+    const balance = await BHTInstance.balanceOf(accounts[1]);
     balance.toNumber().should.be.equal(100);
   });
 
   it("...should sell swag for HCTs.", async () => {
     const SwagNFTInstance = await SwagNFT.deployed();
     const SwagStoreInstance = await SwagStore.deployed();
-    const HCTInstance = await HondurasCommunityToken.deployed();
+    const BHTInstance = await BuidlHondurasToken.deployed();
 
     let balance = await SwagNFTInstance.balanceOf(accounts[1]);
     balance.toNumber().should.equal(0);
@@ -87,7 +85,7 @@ contract("SwagNFT", accounts => {
     const tokens = await SwagNFTInstance.tokensOfOwner(
       SwagStoreInstance.address
     );
-    const receipt = await HCTInstance.transferAndCall(
+    const receipt = await BHTInstance.transferAndCall(
       SwagStoreInstance.address,
       10,
       tokens[0],

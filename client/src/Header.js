@@ -21,7 +21,7 @@ class Header extends Component {
   }
 
   async checkOwner(drizzle) {
-    const isMinter = await drizzle.contracts.HondurasCommunityToken.methods
+    const isMinter = await drizzle.contracts.BuidlHondurasToken.methods
       .isMinter(this.state.account)
       .call();
     console.log(isMinter);
@@ -29,7 +29,7 @@ class Header extends Component {
   }
 
   async hasBalance(drizzle) {
-    var balance = await drizzle.contracts.HondurasCommunityToken.methods
+    var balance = await drizzle.contracts.BuidlHondurasToken.methods
       .balanceOf(this.state.account)
       .call();
     balance = balance;
@@ -51,7 +51,7 @@ class Header extends Component {
         <NavItem className="ml-2 mr-4 mt-4 pt-1 text-left ">
           <Link href="#">
             <Icon name="AccountBalanceWallet" size="20" className="mr-1" />
-            Balance: {this.state.balance} HCT
+            Balance: {this.state.balance} BHT
           </Link>
         </NavItem>
 

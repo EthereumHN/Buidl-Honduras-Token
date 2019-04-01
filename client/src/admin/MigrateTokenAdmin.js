@@ -22,14 +22,13 @@ import {
   OutlineButton
 } from "rimble-ui";
 
-class MintTokenForm extends Component {
+class MigrateTokenAdmin extends Component {
   constructor(props) {
     super(props);
     const { drizzle, drizzleState } = this.props;
     this.state = {
       account: drizzleState.accounts[0],
-      receiverAddress: "",
-      amount: "",
+      contractAddress: this.props.drizzle.contracts.BuidlHondurasToken.address,
       modalSuccess: true,
       modalPending: true,
       modalBody: "",
@@ -102,9 +101,8 @@ class MintTokenForm extends Component {
 
   async onSubmitForm(event) {
     event.preventDefault();
-    const stackId = await this.props.drizzle.contracts.BuidlHondurasToken.methods.mint.cacheSend(
-      this.state.receiverAddress,
-      this.state.amount,
+    const stackId = await this.props.drizzle.contracts.OldTokenMigrator.methods.beginMigration.cacheSend(
+      this.state.contractAddress,
       { from: this.props.drizzleState.account }
     );
     this.setState({ transactionId: stackId });
@@ -130,31 +128,20 @@ class MintTokenForm extends Component {
         <Container className="mt-0 mb-4">
           <Row className="justify-content-center">
             <Col lg="6">
-              <Heading.h2>Mint Tokens</Heading.h2>
+              <Heading.h2>Begin Migration Tokens</Heading.h2>
               <Card className="mt-4 mx-auto">
                 <Form className="form" onSubmit={this.onSubmitForm}>
                   <FormGroup>
-                    <Field label="Receiver Address">
+                    <Field label="New Token Contract Address">
                       <Input
-                        name="Receiver Address"
-                        value={this.state.receiverAddress}
-                        onChange={this.onChangeReceiverAddress}
+                        name="New Token Contract Address"
+                        value={this.state.contractAddress}
+                        onChange={this.onChangeContractAddress}
                         fullWidth
                       />
                     </Field>
                   </FormGroup>
-                  <FormGroup>
-                    <Field label="Amount">
-                      <Input
-                        name="Amount"
-                        type="number"
-                        value={this.state.amount}
-                        onChange={this.onChangeAmount}
-                        fullWidth
-                      />
-                    </Field>
-                  </FormGroup>
-                  <Button type="submit">Mint Tokens</Button>
+                  <Button type="submit">Begin Migration</Button>
                 </Form>
               </Card>
             </Col>
@@ -165,4 +152,4 @@ class MintTokenForm extends Component {
   }
 }
 
-export default MintTokenForm;
+export default MigrateTokenAdmin;

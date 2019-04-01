@@ -22,20 +22,20 @@ import {
   OutlineButton
 } from "rimble-ui";
 
-class MintTokenForm extends Component {
+class AddMinter extends Component {
   constructor(props) {
     super(props);
     const { drizzle, drizzleState } = this.props;
     this.state = {
       account: drizzleState.accounts[0],
-      receiverAddress: "",
+      minterAddress: "",
       amount: "",
       modalSuccess: true,
       modalPending: true,
       modalBody: "",
       modalTitle: ""
     };
-    this.onChangeReceiverAddress = this.onChangeReceiverAddress.bind(this);
+    this.onChangeMinterAddress = this.onChangeMinterAddress.bind(this);
     this.onChangeAmount = this.onChangeAmount.bind(this);
     this.onSubmitForm = this.onSubmitForm.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -47,8 +47,8 @@ class MintTokenForm extends Component {
     });
   }
 
-  onChangeReceiverAddress(event) {
-    this.setState({ receiverAddress: event.target.value });
+  onChangeMinterAddress(event) {
+    this.setState({ minterAddress: event.target.value });
   }
 
   onChangeAmount(event) {
@@ -102,9 +102,8 @@ class MintTokenForm extends Component {
 
   async onSubmitForm(event) {
     event.preventDefault();
-    const stackId = await this.props.drizzle.contracts.BuidlHondurasToken.methods.mint.cacheSend(
-      this.state.receiverAddress,
-      this.state.amount,
+    const stackId = await this.props.drizzle.contracts.BuidlHondurasToken.methods.addMinter.cacheSend(
+      this.state.minterAddress,
       { from: this.props.drizzleState.account }
     );
     this.setState({ transactionId: stackId });
@@ -130,31 +129,21 @@ class MintTokenForm extends Component {
         <Container className="mt-0 mb-4">
           <Row className="justify-content-center">
             <Col lg="6">
-              <Heading.h2>Mint Tokens</Heading.h2>
+              <Heading.h2>Add Minter</Heading.h2>
               <Card className="mt-4 mx-auto">
                 <Form className="form" onSubmit={this.onSubmitForm}>
                   <FormGroup>
-                    <Field label="Receiver Address">
+                    <Field label="Minter Address">
                       <Input
-                        name="Receiver Address"
-                        value={this.state.receiverAddress}
-                        onChange={this.onChangeReceiverAddress}
+                        name="Minter Address"
+                        value={this.state.minterAddress}
+                        onChange={this.onChangeMinterAddress}
                         fullWidth
                       />
                     </Field>
                   </FormGroup>
-                  <FormGroup>
-                    <Field label="Amount">
-                      <Input
-                        name="Amount"
-                        type="number"
-                        value={this.state.amount}
-                        onChange={this.onChangeAmount}
-                        fullWidth
-                      />
-                    </Field>
-                  </FormGroup>
-                  <Button type="submit">Mint Tokens</Button>
+
+                  <Button type="submit">Add Minter</Button>
                 </Form>
               </Card>
             </Col>
@@ -165,4 +154,4 @@ class MintTokenForm extends Component {
   }
 }
 
-export default MintTokenForm;
+export default AddMinter;

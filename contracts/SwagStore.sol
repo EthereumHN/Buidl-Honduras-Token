@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-import './HondurasCommunityToken.sol';
+import './BuidlHondurasToken.sol';
 import './SwagNFT.sol';
 import '../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol';
 

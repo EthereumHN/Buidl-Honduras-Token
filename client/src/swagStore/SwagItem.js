@@ -82,7 +82,7 @@ class SwagItem extends Component {
     console.log(this.state.token.price);
     console.log(this.props.tokenId);
 
-    const stackId = await this.props.drizzle.contracts.HondurasCommunityToken.methods.transferAndCall.cacheSend(
+    const stackId = await this.props.drizzle.contracts.BuidlHondurasToken.methods.transferAndCall.cacheSend(
       this.props.drizzle.contracts.SwagStore.address,
       this.state.token.price,
       this.props.tokenId,
