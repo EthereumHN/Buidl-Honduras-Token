@@ -1,33 +1,87 @@
-Honduras Community Token
+1_initial_migration.js
 ======================
-> Network name:    'xdai'
-> Network id:      100
-> Block gas limit: 10000000
 
-
-2_deploy_contracts.js
-=====================
-
-   Deploying 'HondurasCommunityToken'
-   ----------------------------------
-   > transaction hash:    0xa07589df90a54c1b15d57965fc598328e27fce634b5dbf6cd5c0effa477861a1
-   > Blocks: 0            Seconds: 4
-   > contract address:    0x902C68ED3bde2e270a747A507BF59329ba33fbfC
+   Replacing 'Migrations'
+   ----------------------
+   > transaction hash:    0xf6854f6576ce8973a8f398511f357fe3107a2553bcf956838d57290cdbcdf5aa
+   > Blocks: 1            Seconds: 4
+   > contract address:    0xa244c40751d09574740f6be64B13b11e2064Fe56
    > account:             0xfF9Fe9664e7e0A289A3c64c9e057bCa27Be6685A
-   > balance:             0.458345878
-   > gas used:            2066359
+   > balance:             0.452040451
+   > gas used:            284908
    > gas price:           20 gwei
    > value sent:          0 ETH
-   > total cost:          0.04132718 ETH
+   > total cost:          0.00569816 ETH
 
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:          0.04132718 ETH
+   > Total cost:          0.00569816 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Deploying 'BuidlHondurasToken'
+   ------------------------------
+   > transaction hash:    0x5df18c0105e95304e5d68a584ddc827cc01334215fbe255d729326e919af8e2f
+   > Blocks: 2            Seconds: 12
+   > contract address:    0x83C1113dfdb4Ca0ba680bdF6DF16f90D239a2aD6
+   > account:             0xfF9Fe9664e7e0A289A3c64c9e057bCa27Be6685A
+   > balance:             0.407418211
+   > gas used:            2189078
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.04378156 ETH
+
+
+   Deploying 'SwagStore'
+   ---------------------
+   > transaction hash:    0x234891d1a6647a2650cac40e0849d20eba6779e51f622a1c80e8f1482a5f8639
+   > Blocks: 1            Seconds: 4
+   > contract address:    0x4A946DAC23484ADFc3B9184141885B11849ca668
+   > account:             0xfF9Fe9664e7e0A289A3c64c9e057bCa27Be6685A
+   > balance:             0.391051531
+   > gas used:            818334
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.01636668 ETH
+
+
+   Deploying 'SwagNFT'
+   -------------------
+   > transaction hash:    0x34b96374b7ae5ba6278206ed158d90afdb49995e589cf0b16d9571ef4bb112f4
+   > Blocks: 0            Seconds: 8
+   > contract address:    0xD488DD80Eee5249883de5124DD50879f3a10B3d5
+   > account:             0xfF9Fe9664e7e0A289A3c64c9e057bCa27Be6685A
+   > balance:             0.330249531
+   > gas used:            3040100
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.060802 ETH
+
+
+   Deploying 'OldTokenMigrator'
+   ----------------------------
+   > transaction hash:    0x237c7c31fe5fc52adb122423ac5d18751801a4f0795db75ae3ec08d2ab474c80
+   > Blocks: 0            Seconds: 5
+   > contract address:    0x34e207654942229856814F001B150d56f0998c7d
+   > account:             0xfF9Fe9664e7e0A289A3c64c9e057bCa27Be6685A
+   > balance:             0.316206651
+   > gas used:            702144
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.01404288 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.13499312 ETH
 
 
 Summary
 =======
-> Total deployments:   1
-> Final cost:          0.04132718 ETH
+> Total deployments:   5
+> Final cost:          0.14069128 ETH
