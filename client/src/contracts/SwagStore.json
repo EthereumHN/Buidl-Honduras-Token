@@ -3711,10 +3711,22 @@
       "links": {},
       "address": "0x1a810E02568bE5e984AE6d616c3c94C5C2599e2a",
       "transactionHash": "0x1d5db86d42ce2bbcfd59a17f1cdfd04c54eab485d01e5450d1390f0f4fdae80b"
+    },
+    "1554151181355": {
+      "events": {},
+      "links": {},
+      "address": "0xdA77bE37461a7A933ba067ef6250A4A0F2D6A5A5",
+      "transactionHash": "0x291461d23bfd357ebc0da625c7fa2bb481c9bffbf3b7d80e8d56510d03247106"
+    },
+    "1554157326038": {
+      "events": {},
+      "links": {},
+      "address": "0xB6c625F2a4a882f3B0F3aAF6b24207C924101d2b",
+      "transactionHash": "0x7ca919d5e9b87d009a11b77768c3c7a6da646b7cdab629c06002de9bcc2d73fa"
     }
   },
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-04-01T20:12:06.516Z",
+  "updatedAt": "2019-04-01T22:22:42.006Z",
   "devdoc": {
     "methods": {
       "isOwner()": {
