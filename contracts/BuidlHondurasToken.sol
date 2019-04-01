@@ -6,7 +6,7 @@ import '../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20Mintabl
 import '../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20Burnable.sol';
 import './SwagStore.sol';
 
-contract HondurasCommunityToken is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable {
+contract BuidlHondurasToken is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable {
 
     constructor(
         string memory name,

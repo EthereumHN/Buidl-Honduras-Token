@@ -21,6 +21,15 @@ contract SwagNFT is ERC721Full, ERC721Mintable{
         storeAddress = _storeAddress;
     }
 
+    function setStoreAddress(
+        
+        address _storeAddress
+    )
+        public
+    {
+        storeAddress = _storeAddress;
+    }
+
     function createSwag(
         string memory _tokenURI, 
         uint256 _price
