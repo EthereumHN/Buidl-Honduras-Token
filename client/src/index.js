@@ -7,12 +7,13 @@ import { Drizzle, generateStore } from "drizzle";
 import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import HondurascommunityToken from "./contracts/HondurasCommunityToken.json";
+import BuidlHondurasToken from "./contracts/BuidlHondurasToken.json";
 import SwagNFT from "./contracts/SwagNFT.json";
 import SwagStore from "./contracts/SwagStore.json";
+import OldTokenMigrator from "./contracts/OldTokenMigrator.json";
 
 const options = {
-  contracts: [HondurascommunityToken, SwagNFT, SwagStore]
+  contracts: [BuidlHondurasToken, SwagNFT, SwagStore, OldTokenMigrator]
 };
 
 const drizzleStore = generateStore(options);

@@ -22,7 +22,7 @@ import {
   OutlineButton
 } from "rimble-ui";
 
-class MintTokenForm extends Component {
+class MigrateToken extends Component {
   constructor(props) {
     super(props);
     const { drizzle, drizzleState } = this.props;
@@ -102,8 +102,8 @@ class MintTokenForm extends Component {
 
   async onSubmitForm(event) {
     event.preventDefault();
-    const stackId = await this.props.drizzle.contracts.BuidlHondurasToken.methods.mint.cacheSend(
-      this.state.receiverAddress,
+    const stackId = await this.props.drizzle.contracts.OldTokenMigrator.methods.migrateAll.cacheSend(
+      this.props.drizzleState.account,
       this.state.amount,
       { from: this.props.drizzleState.account }
     );
@@ -130,31 +130,10 @@ class MintTokenForm extends Component {
         <Container className="mt-0 mb-4">
           <Row className="justify-content-center">
             <Col lg="6">
-              <Heading.h2>Mint Tokens</Heading.h2>
+              <Heading.h2>Migrate Tokens</Heading.h2>
               <Card className="mt-4 mx-auto">
                 <Form className="form" onSubmit={this.onSubmitForm}>
-                  <FormGroup>
-                    <Field label="Receiver Address">
-                      <Input
-                        name="Receiver Address"
-                        value={this.state.receiverAddress}
-                        onChange={this.onChangeReceiverAddress}
-                        fullWidth
-                      />
-                    </Field>
-                  </FormGroup>
-                  <FormGroup>
-                    <Field label="Amount">
-                      <Input
-                        name="Amount"
-                        type="number"
-                        value={this.state.amount}
-                        onChange={this.onChangeAmount}
-                        fullWidth
-                      />
-                    </Field>
-                  </FormGroup>
-                  <Button type="submit">Mint Tokens</Button>
+                  <Button type="submit">Migrate all HCT Tokens</Button>
                 </Form>
               </Card>
             </Col>
@@ -165,4 +144,4 @@ class MintTokenForm extends Component {
   }
 }
 
-export default MintTokenForm;
+export default MigrateToken;

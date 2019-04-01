@@ -1,10 +1,11 @@
-var HondurasCommunityToken = artifacts.require("./HondurasCommunityToken.sol");
+var BuidlHondurasToken = artifacts.require("./BuidlHondurasToken.sol");
 var SwagNFT = artifacts.require("./SwagNFT.sol");
 var SwagStore = artifacts.require("./SwagStore.sol");
+var OldTokenMigrator = artifacts.require("./OldTokenMigrator.sol");
 
-module.exports = function(deployer) {
-  deployer
-    .deploy(HondurasCommunityToken, "Honduras Community Token", "HCT", 0)
+module.exports = async function(deployer) {
+  await deployer
+    .deploy(BuidlHondurasToken, "Buidl Honduras Token", "BHT", 0)
     .then(async tokenInstance => {
       await deployer
         .deploy(SwagStore, tokenInstance.address)
@@ -12,9 +13,13 @@ module.exports = function(deployer) {
           await deployer.deploy(
             SwagNFT,
             "BUIDL Honduras Swag",
-            "BHNSWAG",
+            "SWAG",
             swagStoreInstance.address
           );
         });
     });
+  await deployer.deploy(
+    OldTokenMigrator,
+    "0x902c68ed3bde2e270a747a507bf59329ba33fbfc"
+  );
 };
