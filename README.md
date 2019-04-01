@@ -1,2 +1,2 @@
-# Lempira Token - Lempira Powered Stablecoin
-Demo Funcional - http://bit.ly/2UscVPm
+# Buidl Honduras Token - Swag Token - Swag Store
+
