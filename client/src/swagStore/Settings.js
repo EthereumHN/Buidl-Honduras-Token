@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SwagForm from "./MigrateToken";
+import MigrateToken from "./MigrateToken";
 
 class Settings extends Component {
   render() {
