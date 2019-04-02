@@ -135,7 +135,7 @@ class SwagItem extends Component {
               <Heading.h3>{token.name}</Heading.h3>
               <Heading.h5 color="#666">{token.description}</Heading.h5>
               <TextButton p={"0"} mr={4} height={"auto"}>
-                Price: {token.price} HCT
+                Price: {token.price} BHT
               </TextButton>
             </Box>
 
