@@ -4,6 +4,7 @@ import MintTokenForm from "./MintTokenForm";
 import SetNFTAddress from "./SetNFTAddress";
 import MigrateTokenAdmin from "./MigrateTokenAdmin";
 import AddMinter from "./AddMinter";
+import SwagStoreContracts from "./SwagStoreContracts";
 
 class Admin extends Component {
   render() {
@@ -26,6 +27,10 @@ class Admin extends Component {
           drizzle={this.props.drizzle}
         />
         <MigrateTokenAdmin
+          drizzleState={this.props.drizzleState}
+          drizzle={this.props.drizzle}
+        />
+        <SwagStoreContracts
           drizzleState={this.props.drizzleState}
           drizzle={this.props.drizzle}
         />

@@ -42,9 +42,9 @@ contract OldTokenMigrator {
      * @param newToken the token that will be minted
      */
     function beginMigration(ERC20Mintable newToken) public {
-        require(address(_newToken) == address(0));
-        require(address(newToken) != address(0));
-        require(newToken.isMinter(address(this)));
+        require(address(_newToken) == address(0), "address is not empty");
+        require(address(newToken) != address(0), "new token is empty");
+        require(newToken.isMinter(address(this)), "new token is not minter");
 
         _newToken = newToken;
     }
