@@ -61,7 +61,7 @@ contract("SwagNFT", accounts => {
     balance.toNumber().should.equal(1);
   });
 
-  it("...should create HCTs.", async () => {
+  it("...should create BHT.", async () => {
     const BHTInstance = await BuidlHondurasToken.deployed();
 
     await BHTInstance.mint(accounts[1], 100, { from: accounts[0] });
@@ -71,7 +71,7 @@ contract("SwagNFT", accounts => {
     balance.toNumber().should.be.equal(100);
   });
 
-  it("...should sell swag for HCTs.", async () => {
+  it("...should sell swag for BHT.", async () => {
     const SwagNFTInstance = await SwagNFT.deployed();
     const SwagStoreInstance = await SwagStore.deployed();
     const BHTInstance = await BuidlHondurasToken.deployed();
