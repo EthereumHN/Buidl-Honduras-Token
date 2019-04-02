@@ -6,6 +6,7 @@ import { Route } from "react-router-dom";
 import { withRouter } from "react-router";
 import Admin from "./admin/Admin";
 import SwagList from "./swagStore/SwagList";
+import Settings from "./swagStore/Settings";
 
 class App extends Component {
   state = { loading: true, drizzleState: null };
@@ -36,6 +37,16 @@ class App extends Component {
         <Header
           drizzle={this.props.drizzle}
           drizzleState={this.state.drizzleState}
+        />
+        <Route
+          exact
+          path="/settings"
+          render={() => (
+            <Settings
+              drizzle={this.props.drizzle}
+              drizzleState={this.state.drizzleState}
+            />
+          )}
         />
         <Route
           exact

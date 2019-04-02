@@ -8,7 +8,8 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
+  Label
 } from "reactstrap";
 import {
   Heading,
@@ -33,11 +34,13 @@ class MigrateToken extends Component {
       modalSuccess: true,
       modalPending: true,
       modalBody: "",
-      modalTitle: ""
+      modalTitle: "",
+      allowance: 0
     };
     this.onChangeReceiverAddress = this.onChangeReceiverAddress.bind(this);
     this.onChangeAmount = this.onChangeAmount.bind(this);
-    this.onSubmitForm = this.onSubmitForm.bind(this);
+    this.onMigrateTokens = this.onMigrateTokens.bind(this);
+    this.onApprove = this.onApprove.bind(this);
     this.toggle = this.toggle.bind(this);
   }
 
@@ -57,6 +60,8 @@ class MigrateToken extends Component {
 
   componentDidMount() {
     const { drizzle } = this.props;
+    this.getOldTokenBalance(drizzle);
+
     // subscribe to changes in the store
     this.unsubscribe = drizzle.store.subscribe(() => {
       // every time the store updates, grab the state from drizzle
@@ -92,7 +97,8 @@ class MigrateToken extends Component {
               modalBody: `The information was saved in the blockchain with the confirmation hash: ${
                 this.state.transactionHash
               }`,
-              modalSuccess: false
+              modalSuccess: false,
+              transactionId: ""
             });
           }
         }
@@ -100,12 +106,30 @@ class MigrateToken extends Component {
     });
   }
 
-  async onSubmitForm(event) {
+  async getOldTokenBalance(drizzle) {
+    const allowance = await drizzle.contracts.HondurasCommunityToken.methods
+      .balanceOf(this.state.account)
+      .call();
+    this.setState({ allowance });
+  }
+
+  async onApprove(event) {
     event.preventDefault();
+
+    const stackId = await this.props.drizzle.contracts.HondurasCommunityToken.methods.approve.cacheSend(
+      this.props.drizzle.contracts.OldTokenMigrator.address,
+      this.state.allowance,
+      { from: this.state.account }
+    );
+    this.setState({ transactionId: stackId });
+  }
+
+  async onMigrateTokens(event) {
+    event.preventDefault();
+    this.setState({ transactionId: stackId });
     const stackId = await this.props.drizzle.contracts.OldTokenMigrator.methods.migrateAll.cacheSend(
-      this.props.drizzleState.account,
-      this.state.amount,
-      { from: this.props.drizzleState.account }
+      this.state.account,
+      { from: this.state.account }
     );
     this.setState({ transactionId: stackId });
   }
@@ -132,8 +156,18 @@ class MigrateToken extends Component {
             <Col lg="6">
               <Heading.h2>Migrate Tokens</Heading.h2>
               <Card className="mt-4 mx-auto">
-                <Form className="form" onSubmit={this.onSubmitForm}>
-                  <Button type="submit">Migrate all HCT Tokens</Button>
+                <Form className="form">
+                  <Heading.h3>
+                    Old Token Balance: {this.state.allowance} HTC
+                  </Heading.h3>
+                  <Label>1. Approve the Migration</Label>
+                  <Button fullWidth onClick={this.onApprove}>
+                    Approve
+                  </Button>
+                  <Label className="mt-4">2. Migrate All Tokens</Label>
+                  <Button fullWidth onClick={this.onMigrateTokens}>
+                    Migrate
+                  </Button>
                 </Form>
               </Card>
             </Col>

@@ -54,12 +54,17 @@ class Header extends Component {
             Balance: {this.state.balance} BHT
           </Link>
         </NavItem>
-
+        <NavItem className="ml-2 mr-4 mt-4 pt-1 text-left ">
+          <Link href="/settings">
+            <Icon name="Settings" size="20" className="mr-1" />
+            Settings
+          </Link>
+        </NavItem>
         {this.state.isMinter && (
           <NavItem className="ml-2 mr-4 mt-4 pt-1 text-left ">
             <Link href="/admin">
-              <Icon name="Settings" size="20" className="mr-1" />
-              Admin Settings
+              <Icon name="SettingsApplications" size="20" className="mr-1" />
+              Admin
             </Link>
           </NavItem>
         )}
