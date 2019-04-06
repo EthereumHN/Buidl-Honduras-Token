@@ -117,7 +117,7 @@ class SwagItem extends Component {
             <Button onClick={this.toggle}>Close</Button>
           </ModalFooter>
         </Modal>
-        <Col lg="4" className="mt-4">
+        <Col lg="4" className="mb-4">
           <Card
             className="card-container"
             width={"300px"}
