@@ -18,9 +18,8 @@ const options = {
     BuidlHondurasToken,
     SwagNFT,
     SwagStore,
-    OldTokenMigrator
-    //   HondurasCommunityToken removed if not migration needed
-  ]
+    OldTokenMigrator,
+     HondurasCommunityToken 
 };
 
 const drizzleStore = generateStore(options);
