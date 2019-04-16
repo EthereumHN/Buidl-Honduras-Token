@@ -1,15 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Col,
-  Row,
-  Form,
-  FormGroup,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from "reactstrap";
+import { Container, Col, Row, Form, FormGroup } from "reactstrap";
 import {
   Heading,
   Field,
@@ -73,12 +63,15 @@ class MintTokenForm extends Component {
           ) {
             this.setState({
               transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Transaction Submited!",
-              modalBody: "Wait for confirmation",
               modalPending: false,
               receiverAddress: "",
               amount: ""
+            });
+            window.toastProvider.addMessage("Minting tokens...", {
+              secondaryMessage: "Check progress on Blockscout",
+              actionHref: `https://blockscout.com/poa/dai/blocks/${transactionHash}/transactions`,
+              actionText: "Check",
+              variant: "processing"
             });
           }
           if (
@@ -87,12 +80,11 @@ class MintTokenForm extends Component {
           ) {
             this.setState({
               transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Success!",
-              modalBody: `The information was saved in the blockchain with the confirmation hash: ${
-                this.state.transactionHash
-              }`,
               modalSuccess: false
+            });
+            window.toastProvider.addMessage("Tokens Minted", {
+              secondaryMessage: `The address now has BTH`,
+              variant: "success"
             });
           }
         }
@@ -113,20 +105,6 @@ class MintTokenForm extends Component {
   render() {
     return (
       <>
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-          size="lg"
-          className={this.props.className}
-        >
-          <ModalHeader toggle={this.toggle}>
-            {this.state.modalTitle}
-          </ModalHeader>
-          <ModalBody>{this.state.modalBody}</ModalBody>
-          <ModalFooter>
-            <Button onClick={this.toggle}>Close</Button>
-          </ModalFooter>
-        </Modal>
         <Container className="mt-0 mb-4">
           <Row className="justify-content-center">
             <Col lg="6">
@@ -139,7 +117,8 @@ class MintTokenForm extends Component {
                         name="Receiver Address"
                         value={this.state.receiverAddress}
                         onChange={this.onChangeReceiverAddress}
-                        fullWidth
+                        required={true}
+                        width={"100%"}
                       />
                     </Field>
                   </FormGroup>
@@ -150,7 +129,8 @@ class MintTokenForm extends Component {
                         type="number"
                         value={this.state.amount}
                         onChange={this.onChangeAmount}
-                        fullWidth
+                        required={true}
+                        width={"100%"}
                       />
                     </Field>
                   </FormGroup>

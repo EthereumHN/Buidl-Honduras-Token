@@ -12,9 +12,7 @@ class SwagItem extends Component {
       token: null,
       status: "initialized",
       modalSuccess: true,
-      modalPending: true,
-      modalBody: "",
-      modalTitle: ""
+      modalPending: true
     };
     this.onButtonClick = this.onButtonClick.bind(this);
     this.toggle = this.toggle.bind(this);
@@ -45,10 +43,13 @@ class SwagItem extends Component {
           ) {
             this.setState({
               transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Transaction Submited!",
-              modalBody: "Wait for confirmation",
               modalPending: false
+            });
+            window.toastProvider.addMessage("Buying Swag token...", {
+              secondaryMessage: "Check progress on Blockscout",
+              actionHref: `https://blockscout.com/poa/dai/blocks/${transactionHash}/transactions`,
+              actionText: "Check",
+              variant: "processing"
             });
           }
           if (
@@ -57,12 +58,11 @@ class SwagItem extends Component {
           ) {
             this.setState({
               transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Success!",
-              modalBody: `The information was saved in the blockchain with the confirmation hash: ${
-                this.state.transactionHash
-              }`,
               modalSuccess: false
+            });
+            window.toastProvider.addMessage("Swag Token Bought!", {
+              secondaryMessage: `You are the owner of this token`,
+              variant: "success"
             });
           }
         }
@@ -78,10 +78,6 @@ class SwagItem extends Component {
   }
 
   async onButtonClick() {
-    console.log(this.props.drizzle);
-    console.log(this.state.token.price);
-    console.log(this.props.tokenId);
-
     const stackId = await this.props.drizzle.contracts.BuidlHondurasToken.methods.transferAndCall.cacheSend(
       this.props.drizzle.contracts.SwagStore.address,
       this.state.token.price,
@@ -103,20 +99,6 @@ class SwagItem extends Component {
     let { token } = this.state;
     return (
       <>
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-          size="lg"
-          className={this.props.className}
-        >
-          <ModalHeader toggle={this.toggle}>
-            {this.state.modalTitle}
-          </ModalHeader>
-          <ModalBody>{this.state.modalBody}</ModalBody>
-          <ModalFooter>
-            <Button onClick={this.toggle}>Close</Button>
-          </ModalFooter>
-        </Modal>
         <Col lg="4" className="mb-4">
           <Card
             className="card-container"

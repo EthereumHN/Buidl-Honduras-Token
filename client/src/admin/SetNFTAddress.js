@@ -66,10 +66,13 @@ class SetNFTAddress extends Component {
           ) {
             this.setState({
               transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Transaction Submited!",
-              modalBody: "Wait for confirmation",
               modalPending: false
+            });
+            window.toastProvider.addMessage("Setting NFT address...", {
+              secondaryMessage: "Check progress on Blockscout",
+              actionHref: `https://blockscout.com/poa/dai/blocks/${transactionHash}/transactions`,
+              actionText: "Check",
+              variant: "processing"
             });
           }
           if (
@@ -78,11 +81,14 @@ class SetNFTAddress extends Component {
           ) {
             this.setState({
               transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Success!",
-              modalBody: `The information was saved in the blockchain with the confirmation hash: ${
-                this.state.transactionHash
-              }`,
+              modalSuccess: false
+            });
+            window.toastProvider.addMessage("Contract address saved", {
+              secondaryMessage: `You can create NFT tokens now`,
+              variant: "success"
+            });
+            this.setState({
+              transactionHash: transactionHash,
               modalSuccess: false
             });
           }
@@ -103,20 +109,6 @@ class SetNFTAddress extends Component {
   render() {
     return (
       <>
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-          size="lg"
-          className={this.props.className}
-        >
-          <ModalHeader toggle={this.toggle}>
-            {this.state.modalTitle}
-          </ModalHeader>
-          <ModalBody>{this.state.modalBody}</ModalBody>
-          <ModalFooter>
-            <Button onClick={this.toggle}>Close</Button>
-          </ModalFooter>
-        </Modal>{" "}
         <Container className="mt-0 mb-4">
           <Row className="justify-content-center">
             <Col lg="6">
@@ -129,7 +121,8 @@ class SetNFTAddress extends Component {
                         name="Receiver Address"
                         value={this.state.contractAddress}
                         onChange={this.onChangeContractAddress}
-                        fullWidth
+                        required={true}
+                        width={"100%"}
                       />
                     </Field>
                   </FormGroup>

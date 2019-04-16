@@ -7,6 +7,7 @@ import { withRouter } from "react-router";
 import Admin from "./admin/Admin";
 import SwagList from "./swagStore/SwagList";
 import Settings from "./swagStore/Settings";
+import { ToastMessage } from "rimble-ui";
 
 class App extends Component {
   state = { loading: true, drizzleState: null };
@@ -68,6 +69,7 @@ class App extends Component {
             />
           )}
         />
+        <ToastMessage.Provider ref={node => (window.toastProvider = node)} />
       </ThemeProvider>
     );
   }
