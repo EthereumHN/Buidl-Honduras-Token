@@ -4321,10 +4321,28 @@
       "links": {},
       "address": "0x0546228307498EaB40a8C9283a6405E6A3099ccb",
       "transactionHash": "0xac801e0c188357a517afac1ee2a183aab19f0c6cbe19f7b9ac21e93fc883f5b7"
+    },
+    "1555185754669": {
+      "events": {},
+      "links": {},
+      "address": "0x10e7B95f2d136f5Ba5578a4408e694C175284DC7",
+      "transactionHash": "0xac801e0c188357a517afac1ee2a183aab19f0c6cbe19f7b9ac21e93fc883f5b7"
+    },
+    "1555258315807": {
+      "events": {},
+      "links": {},
+      "address": "0x4951B302d99BE629A0b18B078637B9C0CF970699",
+      "transactionHash": "0xac801e0c188357a517afac1ee2a183aab19f0c6cbe19f7b9ac21e93fc883f5b7"
+    },
+    "1555387794510": {
+      "events": {},
+      "links": {},
+      "address": "0xEb7F52Af980e385BF173B126E8aC283607E680f5",
+      "transactionHash": "0xac801e0c188357a517afac1ee2a183aab19f0c6cbe19f7b9ac21e93fc883f5b7"
     }
   },
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-04-01T22:22:42.027Z",
+  "updatedAt": "2019-04-16T04:10:07.210Z",
   "devdoc": {
     "methods": {
       "beginMigration(address)": {

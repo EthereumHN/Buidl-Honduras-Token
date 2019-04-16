@@ -72,25 +72,27 @@ class MigrateTokenAdmin extends Component {
           ) {
             this.setState({
               transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Transaction Submited!",
-              modalBody: "Wait for confirmation",
               modalPending: false,
               receiverAddress: "",
               amount: ""
+            });
+            window.toastProvider.addMessage("Begining migration...", {
+              secondaryMessage: "Check progress on Blockscout",
+              actionHref: `https://blockscout.com/poa/dai/blocks/${transactionHash}/transactions`,
+              actionText: "Check",
+              variant: "processing"
             });
           }
           if (
             drizzleState.transactions[transactionHash].status == "success" &&
             this.state.modalSuccess
           ) {
+            window.toastProvider.addMessage("Migration started", {
+              secondaryMessage: `Users can migrate their old tokens now`,
+              variant: "success"
+            });
             this.setState({
               transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Success!",
-              modalBody: `The information was saved in the blockchain with the confirmation hash: ${
-                this.state.transactionHash
-              }`,
               modalSuccess: false
             });
           }
@@ -137,7 +139,8 @@ class MigrateTokenAdmin extends Component {
                         name="New Token Contract Address"
                         value={this.state.contractAddress}
                         onChange={this.onChangeContractAddress}
-                        fullWidth
+                        width={"100%"}
+                        required={true}
                       />
                     </Field>
                   </FormGroup>

@@ -18,8 +18,8 @@ const options = {
     BuidlHondurasToken,
     SwagNFT,
     SwagStore,
-    OldTokenMigrator,
-    HondurasCommunityToken
+    OldTokenMigrator
+    //   HondurasCommunityToken removed if not migration needed
   ]
 };
 

@@ -36,33 +36,42 @@ class SwagStoreContracts extends Component {
                 <Form className="form" onSubmit={this.onSubmitForm}>
                   <FormGroup>
                     <Field label="BHT" className="publicAddress">
-                      <PublicAddress className="publicAddress"
+                      <PublicAddress
+                        className="publicAddress"
                         address={drizzle.contracts.BuidlHondurasToken.address}
-                        fullWidth
+                        required={true}
+                        width={"100%"}
                       />
                     </Field>
                   </FormGroup>
                   <FormGroup>
                     <Field label="Token Migrator" className="publicAddress">
-                      <PublicAddress className="publicAddress"
+                      <PublicAddress
+                        className="publicAddress"
                         address={drizzle.contracts.OldTokenMigrator.address}
-                        fullWidth
+                        required={true}
+                        width={"100%"}
                       />
                     </Field>
                   </FormGroup>
                   <FormGroup>
                     <Field label="Swag Store" className="publicAddress">
-                      <PublicAddress label="Swag Store" 
+                      <PublicAddress
+                        label="Swag Store"
                         address={drizzle.contracts.SwagStore.address}
-                        fullWidth
+                        required={true}
+                        width={"100%"}
                       />
                     </Field>
                   </FormGroup>
                   <FormGroup>
                     <Field label="Swag NFT" className="publicAddress">
-                      <PublicAddress className="publicAddress"
+                      <PublicAddress
+                        label="Swag NFT"
+                        className=""
                         address={drizzle.contracts.SwagNFT.address}
-                        fullWidth
+                        required={true}
+                        width={"100%"}
                       />
                     </Field>
                   </FormGroup>

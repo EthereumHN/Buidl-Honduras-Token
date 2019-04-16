@@ -29,7 +29,6 @@ class AddMinter extends Component {
     this.state = {
       account: drizzleState.accounts[0],
       minterAddress: "",
-      amount: "",
       modalSuccess: true,
       modalPending: true,
       modalBody: "",
@@ -73,26 +72,26 @@ class AddMinter extends Component {
           ) {
             this.setState({
               transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Transaction Submited!",
-              modalBody: "Wait for confirmation",
-              modalPending: false,
-              receiverAddress: "",
-              amount: ""
+              modalPending: false
+            });
+            window.toastProvider.addMessage("Adding minter...", {
+              secondaryMessage: "Check progress on Blockscout",
+              actionHref: `https://blockscout.com/poa/dai/blocks/${transactionHash}/transactions`,
+              actionText: "Check",
+              variant: "processing"
             });
           }
           if (
             drizzleState.transactions[transactionHash].status == "success" &&
             this.state.modalSuccess
           ) {
+            window.toastProvider.addMessage("Minter added", {
+              secondaryMessage: `The user now can create BTH`,
+              variant: "success"
+            });
             this.setState({
-              transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Success!",
-              modalBody: `The information was saved in the blockchain with the confirmation hash: ${
-                this.state.transactionHash
-              }`,
-              modalSuccess: false
+              modalSuccess: false,
+              minterAddress: ""
             });
           }
         }
@@ -102,6 +101,7 @@ class AddMinter extends Component {
 
   async onSubmitForm(event) {
     event.preventDefault();
+
     const stackId = await this.props.drizzle.contracts.BuidlHondurasToken.methods.addMinter.cacheSend(
       this.state.minterAddress,
       { from: this.props.drizzleState.account }
@@ -112,20 +112,6 @@ class AddMinter extends Component {
   render() {
     return (
       <>
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-          size="lg"
-          className={this.props.className}
-        >
-          <ModalHeader toggle={this.toggle}>
-            {this.state.modalTitle}
-          </ModalHeader>
-          <ModalBody>{this.state.modalBody}</ModalBody>
-          <ModalFooter>
-            <Button onClick={this.toggle}>Close</Button>
-          </ModalFooter>
-        </Modal>
         <Container className="mt-0 mb-4">
           <Row className="justify-content-center">
             <Col lg="6">
@@ -138,7 +124,8 @@ class AddMinter extends Component {
                         name="Minter Address"
                         value={this.state.minterAddress}
                         onChange={this.onChangeMinterAddress}
-                        fullWidth
+                        required={true}
+                        width={"100%"}
                       />
                     </Field>
                   </FormGroup>

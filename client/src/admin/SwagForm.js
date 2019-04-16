@@ -1,15 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Col,
-  Row,
-  Form,
-  FormGroup,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from "reactstrap";
+import { Container, Col, Row, Form, FormGroup } from "reactstrap";
 import {
   Heading,
   Field,
@@ -112,9 +102,6 @@ class SwagForm extends Component {
           ) {
             this.setState({
               transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Transaction Submited!",
-              modalBody: "Wait for confirmation",
               modalPending: false,
               name: "",
               description: "",
@@ -123,6 +110,12 @@ class SwagForm extends Component {
               fileText: "Select Swag Image",
               captureFile: ""
             });
+            window.toastProvider.addMessage("Creating Swag token...", {
+              secondaryMessage: "Check progress on Blockscout",
+              actionHref: `https://blockscout.com/poa/dai/blocks/${transactionHash}/transactions`,
+              actionText: "Check",
+              variant: "processing"
+            });
           }
           if (
             drizzleState.transactions[transactionHash].status == "success" &&
@@ -130,12 +123,11 @@ class SwagForm extends Component {
           ) {
             this.setState({
               transactionHash: transactionHash,
-              modal: true,
-              modalTitle: "Success!",
-              modalBody: `The information was saved in the blockchain with the confirmation hash: ${
-                this.state.transactionHash
-              }`,
               modalSuccess: false
+            });
+            window.toastProvider.addMessage("Swag Token Minted", {
+              secondaryMessage: `Users can now buy this token`,
+              variant: "success"
             });
           }
         }
@@ -145,7 +137,14 @@ class SwagForm extends Component {
 
   async onSubmitForm(event) {
     event.preventDefault();
+    window.toastProvider.addMessage("Upload in progress...", {
+      secondaryMessage: "Please wait",
+      variant: "processing"
+    });
     await ipfs.add(this.state.buffer, async (err, ipfsHash) => {
+      window.toastProvider.addMessage("Image uploaded!", {
+        icon: "Image"
+      });
       this.setState({ image: ipfsHash[0].hash });
       const tokenUri = {
         name: this.state.name,
@@ -166,20 +165,6 @@ class SwagForm extends Component {
   render() {
     return (
       <>
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggle}
-          size="lg"
-          className={this.props.className}
-        >
-          <ModalHeader toggle={this.toggle}>
-            {this.state.modalTitle}
-          </ModalHeader>
-          <ModalBody>{this.state.modalBody}</ModalBody>
-          <ModalFooter>
-            <Button onClick={this.toggle}>Close</Button>
-          </ModalFooter>
-        </Modal>
         <Container className="mt-4">
           <Row className="justify-content-center">
             <Col lg="6">
@@ -192,7 +177,8 @@ class SwagForm extends Component {
                         name="Name"
                         value={this.state.name}
                         onChange={this.onChangeName}
-                        fullWidth
+                        required={true}
+                        width={"100%"}
                       />
                     </Field>
                   </FormGroup>
@@ -202,7 +188,8 @@ class SwagForm extends Component {
                         name="Description"
                         value={this.state.description}
                         onChange={this.onChangeDescription}
-                        fullWidth
+                        required={true}
+                        width={"100%"}
                       />
                     </Field>
                   </FormGroup>
@@ -213,7 +200,8 @@ class SwagForm extends Component {
                         type="number"
                         value={this.state.price}
                         onChange={this.onChangePrice}
-                        fullWidth
+                        required={true}
+                        width={"100%"}
                       />
                     </Field>
                   </FormGroup>
@@ -224,6 +212,8 @@ class SwagForm extends Component {
                         className="x-file-input"
                         onChange={this.captureFile}
                         id="customFile"
+                        required={true}
+                        width={"100%"}
                       />
                       <label className="x-file-label" htmlFor="customFile">
                         {this.state.fileText}
