@@ -2135,10 +2135,16 @@
       "links": {},
       "address": "0x6a033891e7B09b16840092A753761E099F09d898",
       "transactionHash": "0x9d170991a063d2bf09b43813a03d3b1b7fa082f7e0b61b570d53131695a68f57"
+    },
+    "1556043539340": {
+      "events": {},
+      "links": {},
+      "address": "0x667fb39A36CfD6998F33fFf57BAEF6be587e3E6F",
+      "transactionHash": "0x9d170991a063d2bf09b43813a03d3b1b7fa082f7e0b61b570d53131695a68f57"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-23T16:31:09.178Z",
+  "updatedAt": "2019-04-23T18:19:12.378Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {

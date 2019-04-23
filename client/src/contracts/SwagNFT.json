@@ -5630,10 +5630,16 @@
       "links": {},
       "address": "0xceB750257Fc888378Ec03c327b31aD9CfD7388F2",
       "transactionHash": "0xf7bfb0bdd8bfdc21f2ca77c178a679b1c9b078d045335a3fa3fcc4f83c5fda36"
+    },
+    "1556043539340": {
+      "events": {},
+      "links": {},
+      "address": "0x2eEB19Fe17cFef1725706C8Ee720483f66A0431A",
+      "transactionHash": "0xf3c3f70fc8d1e86fd6324aafab871e71415f667c3038abd38b0905f7bedc4d6f"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-23T16:31:09.210Z",
+  "updatedAt": "2019-04-23T18:19:12.395Z",
   "devdoc": {
     "methods": {
       "approve(address,uint256)": {
