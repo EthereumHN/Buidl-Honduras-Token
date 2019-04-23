@@ -18,8 +18,9 @@ const options = {
     BuidlHondurasToken,
     SwagNFT,
     SwagStore,
-    OldTokenMigrator,
-     HondurasCommunityToken 
+    OldTokenMigrator
+    //  HondurasCommunityToken
+  ]
 };
 
 const drizzleStore = generateStore(options);

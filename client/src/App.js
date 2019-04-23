@@ -8,18 +8,29 @@ import Admin from "./admin/Admin";
 import SwagList from "./swagStore/SwagList";
 import Settings from "./swagStore/Settings";
 import { ToastMessage } from "rimble-ui";
+import WrongNetworkWarning from "./messages/WrongNetworkWarning";
+import Web3Warning from "./messages/Web3Warning";
+import Loading from "./messages/Loading";
+import web3 from "web3";
 
 class App extends Component {
   state = { loading: true, drizzleState: null };
 
   componentDidMount() {
     const { drizzle } = this.props;
-    console.log(drizzle);
     // subscribe to changes in the store
-    this.unsubscribe = drizzle.store.subscribe(() => {
+    this.unsubscribe = drizzle.store.subscribe(async () => {
       // every time the store updates, grab the state from drizzle
       const drizzleState = drizzle.store.getState();
-
+      if (
+        drizzleState.web3.networkId != null &&
+        drizzleState.web3.networkId != "99"
+      ) {
+        const networkType = await drizzle.web3.eth.net.getNetworkType();
+        if (networkType != "private") {
+          this.setState({ wrongNetwork: true });
+        }
+      }
       // check to see if it's ready, if so, update local component state
       if (drizzleState.drizzleStatus.initialized) {
         this.setState({ loading: false, drizzleState });
@@ -32,7 +43,28 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.loading) return "Loading Application...";
+    //If metamask is not installed or logged in
+    if (
+      web3.status === "failed" ||
+      (!this.state.loading && this.state.drizzleState.accounts[0] == undefined)
+    ) {
+      return (
+        // Display a web3 warning.
+        <Web3Warning />
+      );
+    }
+    //If wrong network
+    if (this.state.wrongNetwork) {
+      return (
+        // Display a web3 warning.
+        <WrongNetworkWarning />
+      );
+    }
+
+    if (this.state.loading) {
+      return <Loading />;
+    }
+
     return (
       <ThemeProvider>
         <Header
