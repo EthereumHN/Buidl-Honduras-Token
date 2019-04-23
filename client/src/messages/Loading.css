@@ -15,7 +15,7 @@
 }
 
 .breathing-icon {
-    width: 400px;
+    max-width: 100%;
     -webkit-animation: breathing 1s ease-out infinite normal;
     animation: breathing 1s ease-out infinite normal;
     color: #fff;
@@ -26,14 +26,31 @@
     margin-right: auto;
 }
 
-.shaking-icon {
-  width: 300px;
+
+
+.shaking-icon, .metamask-icon {
+  max-width: 100%;
   color: #fff;
   text-align: center;    
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
+
+@media (min-width: 1200px) { 
+  .breathing-icon {
+    max-width: 50%;
+  } 
+
+  .shaking-icon {
+    min-width: 50%;
+  } 
+
+  .metamask-icon{
+    max-width: 40%;
+  }
+}
+
 
 
 @-webkit-keyframes breathing {

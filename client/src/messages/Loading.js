@@ -5,7 +5,7 @@ import "./Loading.css";
 const Loading = () => (
   <div className="loading-wrapper">
     <img src={loading} alt="loading..." className="breathing-icon" />
-    <h4 className="mt-0">Loading Store...</h4>
+    <h4 className="mt-0">Loading...</h4>
   </div>
 );
 
